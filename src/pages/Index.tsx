@@ -1,47 +1,46 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Icon from "@/components/ui/icon";
+import ServiceCalculator from "@/components/ServiceCalculator";
+import RequestForm from "@/components/RequestForm";
 
 const Index = () => {
   const services = [
     {
       title: "Быстро по дому",
+      link: "/musor",
       items: [
-        "Вынос мусора / коробок: 490–790 ₽",
+        "Вынос мусора / коробок: 490–790 ₽ (10–15 минут)",
         "Вынос ёлки: 790 / 1190 / 1490 ₽ (по высоте)",
         "Без мусора в подъезде"
       ]
     },
     {
       title: "Поручения",
+      link: "/porucheniya",
       items: [
-        "Магазин / аптека / ПВЗ рядом: 790–1290 ₽",
-        "Магазин / аптека / ПВЗ съездить: 1490–2490 ₽",
+        "Магазин / аптека / ПВЗ рядом (до 30 мин): 790–1290 ₽",
+        "Съездить / привезти (60–90 мин): 1490–2490 ₽",
         "Покупки строго по чеку"
       ]
     },
     {
       title: "Муж на час",
+      link: "/master",
       items: [
-        "Карнизы / полки / ТВ / зеркала / сборка мебели",
+        "Карнизы / полки / ТВ / зеркала / сборка мебели / регулировки",
         "Минималка: 2490 ₽ (выезд + 60 мин), далее +350 ₽/30 мин",
-        "Согласуем заранее по фото"
+        "Стоимость согласуем заранее по фото/описанию"
       ]
     },
     {
       title: "Бытовая техника (лайт)",
+      link: "/tehnika",
       items: [
-        "Подключение, фильтры, шланги, протечки по соединениям",
+        "Стиралка/посудомойка: подключение, фильтры, шланги, протечки",
         "Духовка: петли / уплотнитель / ручки / регулировка",
         "Диагностика 990 ₽ (входит при ремонте). Газ / платы / фреон — не делаем"
-      ]
-    },
-    {
-      title: "Поговорить по душам",
-      items: [
-        "Прогулка / кафе: 60 мин 1490–2490 ₽",
-        "2 часа: 2990–3990 ₽",
-        "Только публичные места. Я не психолог"
       ]
     }
   ];
@@ -53,9 +52,58 @@ const Index = () => {
     { icon: "Sparkles", text: "Аккуратно и чисто" }
   ];
 
+  const howWeWork = [
+    { icon: "MessageSquare", title: "Пишете задачу", text: "В WhatsApp или Telegram" },
+    { icon: "MapPin", title: "Присылаете адрес + фото", text: "Видео или список покупок" },
+    { icon: "Calculator", title: "Называю цену и время", text: "Заранее, без сюрпризов" },
+    { icon: "ThumbsUp", title: "Приезжаю и делаю", text: "Оплата по факту работы" }
+  ];
+
+  const faq = [
+    {
+      q: "Как быстро можете приехать?",
+      a: "Обычно 1–3 часа при свободном окне. Срочные выезды возможны, но +30% к стоимости."
+    },
+    {
+      q: "Как считаете время работы?",
+      a: "С момента начала работы до окончания. Дорога и ожидание не считаются."
+    },
+    {
+      q: "Точно купите всё по списку?",
+      a: "Да, строго по чеку. Если чего-то нет — согласую замену или верну деньги."
+    },
+    {
+      q: "Какие районы обслуживаете?",
+      a: "Базово Левенцовка и рядом. В другие районы Ростова выезжаю, но +200–500 ₽ за дорогу."
+    },
+    {
+      q: "Что если на месте сложнее?",
+      a: "Позвоню и назову новую цену. Если не согласны — уйду без оплаты."
+    },
+    {
+      q: "Гарантия на монтаж?",
+      a: "30 дней на установку карнизов, полок, ТВ. Если упало по моей вине — переделаю бесплатно."
+    },
+    {
+      q: "Какую технику не чините?",
+      a: "Газовые плиты, холодильники с фреоном/компрессором, платы/пайку. Только простые механические работы."
+    },
+    {
+      q: "Можно ли оплатить картой?",
+      a: "Да, наличные или перевод на карту. Без чеков и НДС."
+    },
+    {
+      q: "Работаете в выходные?",
+      a: "Да, ежедневно 09:00–21:00 включая выходные и праздники."
+    },
+    {
+      q: "Что если опоздаете?",
+      a: "Предупрежу заранее. Если опоздание больше 30 минут по моей вине — скидка 300 ₽."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
       <section className="py-16 px-4 md:py-24 bg-gradient-to-b from-muted/30 to-background">
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -97,13 +145,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
       <section className="py-16 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
             Услуги по ящикам
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, idx) => (
               <Card key={idx} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
@@ -129,7 +176,67 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer CTA */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+            Как работаем
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {howWeWork.map((step, idx) => (
+              <div key={idx} className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-primary-foreground mb-4">
+                  <Icon name={step.icon} size={28} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+                <p className="text-sm text-muted-foreground">{step.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+            Частые вопросы
+          </h2>
+          <Accordion type="single" collapsible className="w-full">
+            {faq.map((item, idx) => (
+              <AccordionItem key={idx} value={`item-${idx}`}>
+                <AccordionTrigger className="text-left">{item.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+            Для арендодателей и суточников
+          </h2>
+          <p className="text-center text-muted-foreground mb-8">
+            Абонементы на 4, 8 или 12 выездов в месяц. Уборка между гостями, мелкий ремонт, закупка расходников.
+          </p>
+          <div className="text-center">
+            <Button size="lg" variant="outline">
+              <Icon name="Mail" size={18} className="mr-2" />
+              Запросить условия
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-4 bg-background">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <ServiceCalculator />
+          <RequestForm />
+        </div>
+      </section>
+
       <section className="py-12 px-4 bg-muted/50">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl font-bold mb-4 text-foreground">
